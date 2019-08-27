@@ -25,7 +25,7 @@ def correct_comment_tag(file):
     comment = comment.replace('eng', '')
     # Replace "/" with a space:
     comment = comment.replace('/', ' ')
-  file.comment = comment
+  file.comment = '\x00' + comment
   file.set_version(VERSION_BOTH)
   file.save()
   return
