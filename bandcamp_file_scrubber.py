@@ -106,7 +106,7 @@ def main():
   parser = argparse.ArgumentParser()
   parser.add_argument('directory', help='System path to directory containing files.')
   parser.add_argument('--rename_files', help='Use this if you want to rename files.  \
-    Useful only if the files have already been manually renamed.', action='store_true')
+    Useful only if the files haven\'t already been manually renamed.', action='store_true')
   parser.add_argument('--correct_key_comment', help='Use this if you want to remove the `/` between \
     keys added by MixedInKey, and add `N/A` if no key was added (i.e. file was too long).', action='store_true')
   args = parser.parse_args()
