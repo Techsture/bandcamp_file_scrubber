@@ -68,6 +68,7 @@ def delete_unnecessary_tags(file, correct_key_comment):
 
 def rename_file(file, directory):
   # Break the filename into its different parts.
+  print(f"Processing file: {file}")
   current_filename = re.split('\ -\ |\.', file)
   artist = current_filename[0]
   album = current_filename[1]
@@ -89,7 +90,7 @@ def rename_file(file, directory):
   # Reconstruct the filename:
   new_filename = artist + ' - ' + new_song_name + '.' + extension
   # Write the new filename:
-  print("Renaming file `{}` to `{}`.".format(file, new_filename))
+  print(f"Renaming file to `{new_filename}`.")
   os.rename(directory + file, directory + new_filename)
   return
 
@@ -121,7 +122,7 @@ def main():
   # Next, re-read the files with their new names and update the ID3 tags:
   file_list = get_file_list(directory)
   for file in file_list:
-    print("Scrubbing ID3 tags for `{}`.".format(file))  
+    print(f"Scrubbing ID3 tags for `{file}`.")
     artist, song = get_info_from_filename(file)
     file = MP3File(directory + file)
     delete_unnecessary_tags(file, correct_key_comment)
