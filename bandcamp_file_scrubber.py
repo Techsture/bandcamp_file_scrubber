@@ -20,11 +20,14 @@ def correct_comment_tag(file):
     file.save()
     return
   else:
-    comment = file.comment
-    # Replace the 'eng' that MixedInKey puts at the beginning of the comment:
-    comment = comment.replace('eng', '')
-    # Replace "/" with a space:
-    comment = comment.replace('/', ' ')
+    try:
+      comment = file.comment
+      # Replace the 'eng' that MixedInKey puts at the beginning of the comment:
+      comment = comment.replace('eng', '')
+      # Replace "/" with a space:
+      comment = comment.replace('/', ' ')
+    except:
+      return
   file.comment = '\x00' + comment
   file.set_version(VERSION_BOTH)
   file.save()
