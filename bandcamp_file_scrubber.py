@@ -72,11 +72,18 @@ def delete_unnecessary_tags(file, correct_key_comment):
 def rename_file(file, directory):
   # Break the filename into its different parts.
   print(f"Processing file: {file}")
-  current_filename = re.split('\ -\ |\.', file)
-  artist = current_filename[0]
-  album = current_filename[1]
-  song = current_filename[2]
-  extension = current_filename[3]
+  filename, file_extension = os.path.splitext(file)
+  filename = re.split('\ -\ ', filename)
+  try:
+    artist = filename[0]
+    album = filename[1]
+    song = filename[2]
+    extension = file_extension[-3:]
+  # Assume if the above fails that there is no album in the filename.
+  except:
+    artist = filename[0]
+    song = filename[1]
+    extension = file_extension[-3:]
   # Make sure all the words in the song name are capitalized:
   #   Doing this manually instead of using string.capwords() is necessary because
   #   otherwise words after an open parentheses will be lower-cased.
