@@ -95,8 +95,9 @@ def rename_file(file, directory):
     else:
       new_song_word_list.append(word.capitalize())
   new_song_name = ' '.join(new_song_word_list)
-  # Remove the track number from the song name:
-  new_song_name = new_song_name[3:]
+  # Remove the track number from the song name if present:
+  if re.match(r'\d\d\ ', new_song_name):
+    new_song_name = new_song_name[3:]
   # Reconstruct the filename:
   new_filename = artist + ' - ' + new_song_name + '.' + extension
   # Write the new filename:
